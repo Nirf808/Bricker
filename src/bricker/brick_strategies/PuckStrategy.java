@@ -22,7 +22,7 @@ public class PuckStrategy implements CollisionStrategy {
     public void onCollision(GameObject thisObj, GameObject otherObj) {
         brickerGameManager.deleteBrick(thisObj);
         for (int i = 0; i < 2; i++) {
-            brickerGameManager.addObject(brickerGameManager.getBallFactory().createBall(
+            brickerGameManager.addObject(brickerGameManager.getGameObjectFactory().createBall(
                             brickerGameManager,
                             Constants.PUCK_BALL_IMAGE,
                             Constants.BALL_SOUND,
