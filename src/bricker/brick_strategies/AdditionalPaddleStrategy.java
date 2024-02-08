@@ -20,7 +20,7 @@ public class AdditionalPaddleStrategy implements CollisionStrategy{
     public void onCollision(GameObject thisObj, GameObject otherObj) {
         basicCollisionStrategy.onCollision(thisObj, otherObj);
         if (!hasExtraPuddle){
-            brickerGameManager.addObject(brickerGameManager.getPaddleFactory().createPaddle(
+            brickerGameManager.addObject(brickerGameManager.getGameObjectFactory().createPaddle(
                     brickerGameManager,
                     Constants.PADDLE_IMAGE,
                     new Vector2(Constants.PADDLE_WIDTH, Constants.PADDLE_LENGTH),

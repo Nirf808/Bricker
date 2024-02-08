@@ -2,11 +2,7 @@ package bricker.main;
 
 import bricker.Constants;
 import bricker.brick_strategies.AdditionalPaddleStrategy;
-import bricker.brick_strategies.BasicCollisionStrategy;
-import bricker.brick_strategies.PuckStrategy;
-import bricker.factories.BallFactory;
 import bricker.factories.GameObjectFactory;
-import bricker.factories.PaddleFactory;
 import bricker.factories.StrategyFactory;
 import bricker.gameobjects.Ball;
 import bricker.gameobjects.Brick;
@@ -50,8 +46,6 @@ public class BrickerGameManager extends GameManager {
     private WindowController windowController;
     private UserInputListener inputListener;
     //TODO create universal GameObjectFactory
-    private BallFactory ballFactory;
-    private PaddleFactory paddleFactory;
     private GameObjectFactory gameObjectFactory;
     private StrategyFactory strategyFactory;
 
@@ -77,8 +71,6 @@ public class BrickerGameManager extends GameManager {
         this.windowController = windowController;
         this.inputListener = inputListener;
         this.totalBricks = bricksPerRow * rows;
-        this.ballFactory = new BallFactory(imageReader, soundReader);
-        this.paddleFactory = new PaddleFactory(imageReader);
         this.gameObjectFactory = new GameObjectFactory(imageReader, soundReader);
 
 
@@ -87,7 +79,7 @@ public class BrickerGameManager extends GameManager {
 
 
         //create ball
-        createBall(imageReader, soundReader);
+        createBall();
 
         //create paddle
         createPaddle(imageReader, inputListener);
@@ -196,11 +188,11 @@ public class BrickerGameManager extends GameManager {
         gameObjects().addGameObject(Obj, layer);
     }
 
-    private void createBall(ImageReader imageReader, SoundReader soundReader) {
+    private void createBall() {
         Vector2 ballSpeed = chooseBallDirection();
 
-        this.ball = ballFactory.createBall(this, Constants.BALL_IMAGE, Constants.BALL_SOUND,
-                Constants.BALL_SIZE, windowDimensions.mult(0.5F), ballSpeed);
+        this.ball = gameObjectFactory.createBall(this, Constants.BALL_IMAGE,
+                Constants.BALL_SOUND, Constants.BALL_SIZE, windowDimensions.mult(0.5F), ballSpeed);
         this.gameObjects().addGameObject(ball);
 
     }
@@ -285,14 +277,6 @@ public class BrickerGameManager extends GameManager {
         this.lives = new Lives(new Vector2(0, windowDimensions.y() - Constants.HEART_SIZE),
                 new Vector2(Constants.HEART_SIZE, Constants.HEART_SIZE), null, imageReader,
                 this);
-    }
-
-    public BallFactory getBallFactory() {
-        return ballFactory;
-    }
-
-    public PaddleFactory getPaddleFactory() {
-        return paddleFactory;
     }
 
     public Vector2 getWindowDimensions() {

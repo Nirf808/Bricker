@@ -1,6 +1,7 @@
 package bricker.brick_strategies;
 
 import bricker.Constants;
+import bricker.gameobjects.ExtraLive;
 import bricker.main.BrickerGameManager;
 import bricker.factories.GameObjectFactory;
 import danogl.GameObject;
@@ -16,8 +17,9 @@ public class ExtraLiveStrategy implements CollisionStrategy{
     @Override
     public void onCollision(GameObject thisObj, GameObject otherObj) {
         brickerGameManager.deleteBrick(thisObj);
-        brickerGameManager.addObject(brickerGameManager.getGameObjectFactory().createLive(
-                new Vector2(Constants.HEART_SIZE, Constants.HEART_SIZE), Constants.LIVE_IMAGE,
-                thisObj.getCenter(), brickerGameManager));
+        ExtraLive extraLive = brickerGameManager.getGameObjectFactory().createLive(brickerGameManager,
+                Constants.LIVE_IMAGE, new Vector2(Constants.HEART_SIZE, Constants.HEART_SIZE),
+                thisObj.getCenter(), Vector2.DOWN.mult(100));
+        brickerGameManager.addObject(extraLive);
     }
 }
