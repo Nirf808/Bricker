@@ -16,6 +16,10 @@ public class DoubleStrategy implements CollisionStrategyDecorator{
         this.brickerGameManager = brickerGameManager;
         this.strategyCounter = strategyCounter;
         this.strategies = new CollisionStrategy[2];
+        initializeStrategies();
+    }
+
+    private void initializeStrategies(){
         Random rand = new Random();
         for (int i = 0; i < 2; i++) {
             int strategyNum;
@@ -35,7 +39,6 @@ public class DoubleStrategy implements CollisionStrategyDecorator{
                 strategies[i] = new StrategyFactory(brickerGameManager).createStrategy(strategyNum);
             }
         }
-
     }
 
     private int getStrategyCounter() {return strategyCounter;}
