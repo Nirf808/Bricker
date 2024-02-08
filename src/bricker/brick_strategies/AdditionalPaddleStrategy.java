@@ -6,14 +6,26 @@ import danogl.GameObject;
 import danogl.collisions.Layer;
 import danogl.util.Vector2;
 
+/**
+ * a BrickStrategy class for creating a temporary extra paddle to the game
+ */
 public class AdditionalPaddleStrategy implements CollisionStrategy{
     private static boolean hasExtraPuddle = false;
     private BrickerGameManager brickerGameManager;
 
+    /**
+     * creating a new AdditionalPaddleStrategy
+     * @param brickerGameManager the game manager instance
+     */
     public AdditionalPaddleStrategy(BrickerGameManager brickerGameManager){
         this.brickerGameManager = brickerGameManager;
     }
 
+    /**
+     * creates a new extra paddle if not exists
+     * @param thisObj the brick which was collided
+     * @param otherObj the collided object
+     */
     @Override
     public void onCollision(GameObject thisObj, GameObject otherObj) {
         brickerGameManager.deleteBrick(thisObj);
@@ -30,7 +42,11 @@ public class AdditionalPaddleStrategy implements CollisionStrategy{
         }
     }
 
-    public static void setHasExtraPuddle(boolean hasExtraPuddle) {
+    /**
+     * set hasExtraPaddle value
+     * @param hasExtraPuddle true if an extra paddle is added, false if an extra puddle is removed
+     */
+    public static void setHasExtraPaddle(boolean hasExtraPuddle) {
         AdditionalPaddleStrategy.hasExtraPuddle = hasExtraPuddle;
     }
 

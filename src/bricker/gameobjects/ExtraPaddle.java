@@ -18,7 +18,7 @@ public class ExtraPaddle extends Paddle{
                        UserInputListener inputListener, float x) {
         super(topLeftCorner, dimensions, renderable, inputListener, x);
         numCollisions = 0;
-        AdditionalPaddleStrategy.setHasExtraPuddle(true);
+        AdditionalPaddleStrategy.setHasExtraPaddle(true);
         this.brickerGameManager = brickerGameManager;
     }
 
@@ -32,7 +32,7 @@ public class ExtraPaddle extends Paddle{
         super.update(deltaTime);
         if (numCollisions >= 4){
             brickerGameManager.deleteObject(this);
-            AdditionalPaddleStrategy.setHasExtraPuddle(false);
+            AdditionalPaddleStrategy.setHasExtraPaddle(false);
         }
     }
 }

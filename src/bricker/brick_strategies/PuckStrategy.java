@@ -8,6 +8,9 @@ import danogl.util.Vector2;
 
 import java.util.Random;
 
+/**
+ * a CollisionStrategy that creates new puck balls to the game
+ */
 public class PuckStrategy implements CollisionStrategy {
     private BrickerGameManager brickerGameManager;
 
