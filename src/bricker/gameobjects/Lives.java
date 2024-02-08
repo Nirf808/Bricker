@@ -1,5 +1,6 @@
 package bricker.gameobjects;
 
+import bricker.Constants;
 import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 import danogl.collisions.Layer;
@@ -18,7 +19,7 @@ public class Lives extends GameObject {
     private int lives;
     private final GameObject[] livesObjs;
     private TextRenderable textRenderable;
-    private  BrickerGameManager brickerGameManager;
+    private final BrickerGameManager brickerGameManager;
 
 
     public Lives(Vector2 topLeftCorner, Vector2 dimensions, Renderable renderable,
@@ -30,7 +31,7 @@ public class Lives extends GameObject {
         //create inner objects
         //renderers
         this.textRenderable = new TextRenderable(format("%d", lives));
-        Renderable livesImage = imageReader.readImage("./assets/heart.png", true);
+        Renderable livesImage = imageReader.readImage(Constants.LIVE_IMAGE, true);
         //text color
         updateLives();
         //text object
@@ -38,7 +39,9 @@ public class Lives extends GameObject {
         livesObjs[0] = new GameObject(new Vector2(topLeftCorner.x(), initialeTopLeftCornerY),
                 new Vector2(dimensions), textRenderable);
         for (int i = 1; i < livesObjs.length; i++) {
-            livesObjs[i] = new GameObject(new Vector2(topLeftCorner.x() + dimensions.x() * i, initialeTopLeftCornerY),
+            livesObjs[i] = new GameObject(
+                    new Vector2(topLeftCorner.x() + (dimensions.x() + Constants.HEART_SPACING) * i,
+                            initialeTopLeftCornerY),
                     new Vector2(dimensions), livesImage);
         }
         //
@@ -56,9 +59,9 @@ public class Lives extends GameObject {
 
     public void loseLive() {
         if (lives > 0) {
+            brickerGameManager.deleteObject(livesObjs[lives], Layer.UI);
             lives--;
             updateLives();
-            brickerGameManager.deleteObject(livesObjs[lives], Layer.UI);
         }
     }
 

@@ -6,6 +6,7 @@ import bricker.brick_strategies.BasicCollisionStrategy;
 import bricker.brick_strategies.CameraStrategy;
 import bricker.brick_strategies.PuckStrategy;
 import bricker.factories.BallFactory;
+import bricker.factories.GameObjectFactory;
 import bricker.factories.PaddleFactory;
 import bricker.gameobjects.Ball;
 import bricker.gameobjects.Brick;
@@ -39,23 +40,21 @@ public class BrickerGameManager extends GameManager {
     private static final float SPACING_Y_FACTOR = 1;
     private static final int DEFAULT_BRICKS_PER_ROW = 8;
     private static final int DEFAULT_ROWS = 7;
-    private static final float HEART_SIZE = 20;
-    private static final int INITIALIZE_LIVES = 3;
-    private static final int MAX_LIVES = 4;
 
 
     private final int bricksPerRow;
     private final int rows;
     private Lives lives;
-    private int currentLives;
     private int totalBricks;
     private Ball ball;
 
     private Vector2 windowDimensions;
     private WindowController windowController;
     private UserInputListener inputListener;
+    //TODO create universal GameObjectFactory
     private BallFactory ballFactory;
     private PaddleFactory paddleFactory;
+    private GameObjectFactory gameObjectFactory;
 
 
     public BrickerGameManager(String windowTitle, Vector2 windowDimensions) {
@@ -66,7 +65,6 @@ public class BrickerGameManager extends GameManager {
         super(windowTitle, windowDimensions);
         this.bricksPerRow = bricksPerRow;
         this.rows = rows;
-        this.currentLives = INITIALIZE_LIVES;
 
     }
 
@@ -81,6 +79,8 @@ public class BrickerGameManager extends GameManager {
         this.totalBricks = bricksPerRow * rows;
         this.ballFactory = new BallFactory(imageReader, soundReader);
         this.paddleFactory = new PaddleFactory(imageReader);
+        this.gameObjectFactory = new GameObjectFactory(imageReader, soundReader);
+
 
         AdditionalPaddleStrategy.setHasExtraPuddle(false);
         //TODO maybe define GameObject factory?
@@ -112,6 +112,7 @@ public class BrickerGameManager extends GameManager {
         checkForGameEnd();
 
     }
+    //TODO double code, merge with chooseBallDirection
 
     private void resetMainBall(Ball ball) {
         ball.setCenter(windowDimensions.mult(0.5F));
@@ -186,6 +187,10 @@ public class BrickerGameManager extends GameManager {
         gameObjects().removeGameObject(obj, layerId);
     }
 
+    public void addObject(GameObject Obj) {
+        gameObjects().addGameObject(Obj);
+    }
+
     public void addObject(GameObject Obj, int layer) {
         gameObjects().addGameObject(Obj, layer);
     }
@@ -220,6 +225,7 @@ public class BrickerGameManager extends GameManager {
                 new Paddle(Vector2.ZERO, new Vector2(PADDLE_WIDTH, PADDLE_LENGTH),
                         paddleImage, inputListener, windowDimensions.x());
         paddle.setCenter(new Vector2(windowDimensions.x() / 2, windowDimensions.y() - PADDLE_HEIGHT));
+        paddle.setTag(Constants.MAIN_PADDLE_TAG);
         this.gameObjects().addGameObject(paddle);
     }
 
@@ -276,8 +282,8 @@ public class BrickerGameManager extends GameManager {
     }
 
     private void createLives(ImageReader imageReader) {
-        this.lives = new Lives(new Vector2(0, windowDimensions.y() - HEART_SIZE),
-                new Vector2(HEART_SIZE, HEART_SIZE), null, imageReader,
+        this.lives = new Lives(new Vector2(0, windowDimensions.y() - Constants.HEART_SIZE),
+                new Vector2(Constants.HEART_SIZE, Constants.HEART_SIZE), null, imageReader,
                 this);
     }
 
@@ -300,4 +306,9 @@ public class BrickerGameManager extends GameManager {
     public Ball getMainBall() {
         return ball;
     }
+    public GameObjectFactory getGameObjectFactory() {
+        return gameObjectFactory;
+    }
+    public void addLive() { lives.addLive();}
+
 }
