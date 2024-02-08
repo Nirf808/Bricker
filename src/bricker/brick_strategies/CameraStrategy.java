@@ -6,16 +6,14 @@ import danogl.GameObject;
 
 public class CameraStrategy implements CollisionStrategy {
     private BrickerGameManager brickerGameManager;
-    private BasicCollisionStrategy basicCollisionStrategy;
 
     public CameraStrategy(BrickerGameManager brickerGameManager) {
         this.brickerGameManager = brickerGameManager;
-        this.basicCollisionStrategy = new BasicCollisionStrategy(brickerGameManager);
     }
 
     @Override
     public void onCollision(GameObject thisObj, GameObject otherObj) {
-        basicCollisionStrategy.onCollision(thisObj, otherObj);
+        brickerGameManager.deleteBrick(thisObj);
         if (otherObj == brickerGameManager.getMainBall() && brickerGameManager.camera() == null){
             brickerGameManager.addObject(new CameraFollower(brickerGameManager), CameraFollower.cameraFollowerLayer);
         }

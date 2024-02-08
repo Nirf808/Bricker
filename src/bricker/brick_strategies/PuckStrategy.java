@@ -10,16 +10,14 @@ import java.util.Random;
 
 public class PuckStrategy implements CollisionStrategy {
     private BrickerGameManager brickerGameManager;
-    private BasicCollisionStrategy basicCollisionStrategy;
 
     public PuckStrategy(BrickerGameManager brickerGameManager) {
         this.brickerGameManager = brickerGameManager;
-        this.basicCollisionStrategy = new BasicCollisionStrategy(brickerGameManager);
     }
 
     @Override
     public void onCollision(GameObject thisObj, GameObject otherObj) {
-        basicCollisionStrategy.onCollision(thisObj, otherObj);
+        brickerGameManager.deleteBrick(thisObj);
         for (int i = 0; i < 2; i++) {
             brickerGameManager.addObject(brickerGameManager.getBallFactory().createBall(
                             brickerGameManager,

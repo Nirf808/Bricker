@@ -9,16 +9,14 @@ import danogl.util.Vector2;
 public class AdditionalPaddleStrategy implements CollisionStrategy{
     private static boolean hasExtraPuddle = false;
     private BrickerGameManager brickerGameManager;
-    private BasicCollisionStrategy basicCollisionStrategy;
 
     public AdditionalPaddleStrategy(BrickerGameManager brickerGameManager){
         this.brickerGameManager = brickerGameManager;
-        this.basicCollisionStrategy = new BasicCollisionStrategy(brickerGameManager);
     }
 
     @Override
     public void onCollision(GameObject thisObj, GameObject otherObj) {
-        basicCollisionStrategy.onCollision(thisObj, otherObj);
+        brickerGameManager.deleteBrick(thisObj);
         if (!hasExtraPuddle){
             brickerGameManager.addObject(brickerGameManager.getPaddleFactory().createPaddle(
                     brickerGameManager,
