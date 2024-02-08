@@ -3,6 +3,7 @@ package bricker.main;
 import bricker.Constants;
 import bricker.brick_strategies.AdditionalPaddleStrategy;
 import bricker.brick_strategies.BasicCollisionStrategy;
+import bricker.brick_strategies.CameraStrategy;
 import bricker.brick_strategies.PuckStrategy;
 import bricker.factories.BallFactory;
 import bricker.factories.PaddleFactory;
@@ -223,7 +224,7 @@ public class BrickerGameManager extends GameManager {
     }
 
     private void createWalls() {
-        Renderable wallRender = null;
+    Renderable wallRender = null;
         //Renderable wallRender = new RectangleRenderable(Color.BLUE);
         GameObject leftWall =
                 new GameObject(Vector2.ZERO,
@@ -266,8 +267,8 @@ public class BrickerGameManager extends GameManager {
                         new Vector2((width + SPACING_X_FACTOR) * col + SPACING_X_FACTOR / 2 + WALLS_WIDTH,
                                 (BRICK_HEIGHT + SPACING_Y_FACTOR) * row + WALLS_WIDTH),
                         new Vector2(width, BRICK_HEIGHT),
-                        brickImage, (row == this.rows - 1 && col == this.bricksPerRow - 1) ?
-                        new PuckStrategy(this): new AdditionalPaddleStrategy(this));
+                        brickImage, (col == this.bricksPerRow - 1) ?
+                        new PuckStrategy(this): new CameraStrategy(this));
                 this.gameObjects().addGameObject(brick, Layer.STATIC_OBJECTS);
             }
 
