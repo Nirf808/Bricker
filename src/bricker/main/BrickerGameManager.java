@@ -7,6 +7,7 @@ import bricker.brick_strategies.PuckStrategy;
 import bricker.factories.BallFactory;
 import bricker.factories.GameObjectFactory;
 import bricker.factories.PaddleFactory;
+import bricker.factories.StrategyFactory;
 import bricker.gameobjects.Ball;
 import bricker.gameobjects.Brick;
 import bricker.gameobjects.Lives;
@@ -25,8 +26,6 @@ import danogl.util.Vector2;
 import java.util.Random;
 
 public class BrickerGameManager extends GameManager {
-
-    private static final float BALL_SIZE = 20;
     private static final float BALL_SPEED = 200;
     private static final float PADDLE_WIDTH = 100;
     private static final float PADDLE_LENGTH = 15;
@@ -54,6 +53,7 @@ public class BrickerGameManager extends GameManager {
     private BallFactory ballFactory;
     private PaddleFactory paddleFactory;
     private GameObjectFactory gameObjectFactory;
+    private StrategyFactory strategyFactory;
 
 
     public BrickerGameManager(String windowTitle, Vector2 windowDimensions) {
@@ -64,6 +64,7 @@ public class BrickerGameManager extends GameManager {
         super(windowTitle, windowDimensions);
         this.bricksPerRow = bricksPerRow;
         this.rows = rows;
+        this.strategyFactory = new StrategyFactory(this);
 
     }
 
@@ -273,8 +274,7 @@ public class BrickerGameManager extends GameManager {
                         new Vector2((width + SPACING_X_FACTOR) * col + SPACING_X_FACTOR / 2 + WALLS_WIDTH,
                                 (BRICK_HEIGHT + SPACING_Y_FACTOR) * row + WALLS_WIDTH),
                         new Vector2(width, BRICK_HEIGHT),
-                        brickImage, (row == this.rows - 1 && col == this.bricksPerRow - 1) ?
-                        new PuckStrategy(this): new PuckStrategy(this));
+                        brickImage, strategyFactory.createStrategy(new Random().nextInt(10)));
                 this.gameObjects().addGameObject(brick, Layer.STATIC_OBJECTS);
             }
 
