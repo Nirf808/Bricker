@@ -15,6 +15,5 @@ public class Constants {
     public static final float HEART_SIZE = 20;
     public static final float HEART_SPACING = 2;
     public static  final String MAIN_PADDLE_TAG = "Main Paddle";
-
-
+    public static final int MAX_MULTIPLE_STRATEGIES = 3;
 }
