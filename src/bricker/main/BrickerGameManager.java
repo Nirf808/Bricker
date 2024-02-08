@@ -3,7 +3,6 @@ package bricker.main;
 import bricker.Constants;
 import bricker.brick_strategies.AdditionalPaddleStrategy;
 import bricker.brick_strategies.BasicCollisionStrategy;
-import bricker.brick_strategies.CameraStrategy;
 import bricker.brick_strategies.PuckStrategy;
 import bricker.factories.BallFactory;
 import bricker.factories.GameObjectFactory;
@@ -11,8 +10,8 @@ import bricker.factories.PaddleFactory;
 import bricker.factories.StrategyFactory;
 import bricker.gameobjects.Ball;
 import bricker.gameobjects.Brick;
-import bricker.gameobjects.Paddle;
 import bricker.gameobjects.Lives;
+import bricker.gameobjects.Paddle;
 import danogl.GameManager;
 import danogl.GameObject;
 import danogl.collisions.Layer;
@@ -38,7 +37,7 @@ public class BrickerGameManager extends GameManager {
     private static final float SPACING_X_FACTOR = 2;
     private static final float SPACING_Y_FACTOR = 1;
     private static final int DEFAULT_BRICKS_PER_ROW = 8;
-    private static final int DEFAULT_ROWS = 7;
+    private static final int DEFAULT_ROWS = 8;
 
 
     private final int bricksPerRow;
@@ -151,7 +150,7 @@ public class BrickerGameManager extends GameManager {
             }
         }
         //victory
-        if(totalBricks == 0) {
+        if(totalBricks <= 0) {
             if(windowController.openYesNoDialog("You Won! Try again?")) {
                 windowController.resetGame();
             }
@@ -176,8 +175,9 @@ public class BrickerGameManager extends GameManager {
 
     //TODO maybe we can use tags to unite deleteBrick and deleteObject
     public void deleteBrick(GameObject obj) {
-        gameObjects().removeGameObject(obj, Layer.STATIC_OBJECTS);
-        totalBricks--;
+        if (gameObjects().removeGameObject(obj, Layer.STATIC_OBJECTS)) {
+            totalBricks--;
+        }
     }
 
     public void deleteObject(GameObject obj) {
@@ -310,5 +310,4 @@ public class BrickerGameManager extends GameManager {
         return gameObjectFactory;
     }
     public void addLive() { lives.addLive();}
-
 }
