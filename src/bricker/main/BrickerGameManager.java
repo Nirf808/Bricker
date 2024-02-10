@@ -74,7 +74,7 @@ public class BrickerGameManager extends GameManager {
         this.gameObjectFactory = new GameObjectFactory(imageReader, soundReader);
 
 
-        AdditionalPaddleStrategy.setHasExtraPuddle(false);
+        AdditionalPaddleStrategy.setHasExtraPaddle(false);
         //TODO maybe define GameObject factory?
 
 

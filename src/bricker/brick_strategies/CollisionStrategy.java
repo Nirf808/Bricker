@@ -3,13 +3,16 @@ package bricker.brick_strategies;
 import danogl.GameObject;
 
 /**
- * @// TODO: 08/02/2024 how to describe these?
+ * Interface representing a collision strategy between game objects.
+ * Implementing classes define the behavior when a collision occurs.
  */
 public interface CollisionStrategy {
+
     /**
-     * the behaviour when collision occurs
-     * @param thisObj the colliding object
-     * @param otherObj the collided object
+     * Defines the behavior when a collision occurs between two game objects.
+     *
+     * @param thisObj  The colliding object.
+     * @param otherObj The collided object.
      */
     void onCollision(GameObject thisObj, GameObject otherObj);
 }
