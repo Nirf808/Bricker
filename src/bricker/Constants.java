@@ -121,5 +121,5 @@ public class Constants {
     /**
      * Layer of the camera follower in the game
      */
-    public static int CAMERA_FOLLOWER_LAYER = Layer.BACKGROUND;
+    public static final int CAMERA_FOLLOWER_LAYER = Layer.BACKGROUND;
 }
