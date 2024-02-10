@@ -1,5 +1,7 @@
 package bricker;
 
+import danogl.collisions.Layer;
+
 /**
  * Class containing constants used throughout the Bricker game.
  */
@@ -114,4 +116,10 @@ public class Constants {
      * Default number of rows of bricks.
      */
     public static final int DEFAULT_ROWS = 8;
+
+
+    /**
+     * Layer of the camera follower in the game
+     */
+    public static int CAMERA_FOLLOWER_LAYER = Layer.BACKGROUND;
 }

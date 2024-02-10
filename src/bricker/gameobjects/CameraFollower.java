@@ -1,8 +1,8 @@
 package bricker.gameobjects;
 
+import bricker.Constants;
 import bricker.main.BrickerGameManager;
 import danogl.GameObject;
-import danogl.collisions.Layer;
 import danogl.gui.rendering.Camera;
 import danogl.util.Vector2;
 
@@ -15,7 +15,7 @@ public class CameraFollower extends GameObject {
     /**
      * Represents the layer assigned to the camera follower objects in the Bricker game.
      */
-    public static int cameraFollowerLayer = Layer.BACKGROUND;
+//    public static int cameraFollowerLayer = Layer.BACKGROUND;
     private final int initCollisions; // Initial collision count of the main ball
     private BrickerGameManager brickerGameManager; // Reference to the game manager
 
@@ -43,7 +43,7 @@ public class CameraFollower extends GameObject {
         // Check if the main ball has collided more than 4 times since this camera follower was created
         if (brickerGameManager.getMainBall().getCollisionCounter() > initCollisions + 4) {
             rollBackCamera(); // Roll back the camera
-            brickerGameManager.deleteObject(this, cameraFollowerLayer); // Delete this camera follower
+            brickerGameManager.deleteObject(this, Constants.CAMERA_FOLLOWER_LAYER); // Delete this camera follower
         }
     }
 

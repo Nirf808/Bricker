@@ -1,5 +1,6 @@
 package bricker.brick_strategies;
 
+import bricker.Constants;
 import bricker.gameobjects.CameraFollower;
 import bricker.main.BrickerGameManager;
 import danogl.GameObject;
@@ -34,7 +35,7 @@ public class CameraStrategy implements CollisionStrategy {
         // Check if the collided object is the main ball and if the camera is not yet switched
         if (otherObj == brickerGameManager.getMainBall() && brickerGameManager.camera() == null) {
             // Create a CameraFollower object to change the player's view
-            brickerGameManager.addObject(new CameraFollower(brickerGameManager), CameraFollower.cameraFollowerLayer);
+            brickerGameManager.addObject(new CameraFollower(brickerGameManager), Constants.CAMERA_FOLLOWER_LAYER);
         }
     }
 }
