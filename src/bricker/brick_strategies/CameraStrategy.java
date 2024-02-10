@@ -6,6 +6,7 @@ import danogl.GameObject;
 
 /**
  * A CollisionStrategy implementation that changes the player's view of the game.
+ * This strategy deletes the collided brick and creates a CameraFollower if the camera is not yet switched.
  */
 public class CameraStrategy implements CollisionStrategy {
 
