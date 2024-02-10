@@ -38,7 +38,8 @@ public class ExtraLive extends GameObject {
      */
     @Override
     public boolean shouldCollideWith(GameObject other) {
-        return other.getTag().equals(Constants.MAIN_PADDLE_TAG); // Collision allowed only with the main paddle
+        // Collision allowed only with the main paddle
+        return other.getTag().equals(Constants.MAIN_PADDLE_TAG);
     }
 
     /**

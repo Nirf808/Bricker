@@ -43,7 +43,8 @@ public class CameraFollower extends GameObject {
         // Check if the main ball has collided more than 4 times since this camera follower was created
         if (brickerGameManager.getMainBall().getCollisionCounter() > initCollisions + 4) {
             rollBackCamera(); // Roll back the camera
-            brickerGameManager.deleteObject(this, Constants.CAMERA_FOLLOWER_LAYER); // Delete this camera follower
+            // Delete this camera follower
+            brickerGameManager.deleteObject(this, Constants.CAMERA_FOLLOWER_LAYER);
         }
     }
 

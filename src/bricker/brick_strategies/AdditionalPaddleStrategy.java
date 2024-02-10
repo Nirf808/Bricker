@@ -41,12 +41,18 @@ public class AdditionalPaddleStrategy implements CollisionStrategy {
             brickerGameManager.addObject(
                     brickerGameManager.getGameObjectFactory().createPaddle(
                             brickerGameManager,
-                            Constants.PADDLE_IMAGE, // Image for the paddle
-                            new Vector2(Constants.PADDLE_WIDTH, Constants.PADDLE_LENGTH), // Dimensions of the paddle
-                            brickerGameManager.getUserInput(), // User input listener for controlling the paddle
-                            brickerGameManager.getWindowDimensions().x(), // Width of the game window
-                            getPaddleInitLocation(), // Initial location of the paddle
-                            true // Flag indicating that this is an extra paddle
+                            // Image for the paddle
+                            Constants.PADDLE_IMAGE,
+                            // Dimensions of the paddle
+                            new Vector2(Constants.PADDLE_WIDTH, Constants.PADDLE_LENGTH),
+                            // User input listener for controlling the paddle
+                            brickerGameManager.getUserInput(),
+                            // Width of the game window
+                            brickerGameManager.getWindowDimensions().x(),
+                            // Initial location of the paddle
+                            getPaddleInitLocation(),
+                            // Flag indicating that this is an extra paddle
+                            true
                     ),
                     Layer.DEFAULT // Layer for rendering the extra paddle
             );

@@ -21,7 +21,8 @@ import java.util.Random;
 
 /**
  * The game manager for the Bricker game.
- * Responsible for initializing game elements, updating game state, handling collisions, and managing game objects.
+ * Responsible for initializing game elements, updating game state, handling collisions,
+ * and managing game objects.
  */
 public class BrickerGameManager extends GameManager {
     private final int bricksPerRow; // Number of bricks per row
@@ -293,12 +294,15 @@ public class BrickerGameManager extends GameManager {
     private void createBricks(ImageReader imageReader) {
         Renderable brickImage = imageReader.readImage("./assets/brick.png", false);
         float width =
-                (windowDimensions.x() - Constants.WALLS_WIDTH * 2 - Constants.SPACING_X_FACTOR * bricksPerRow) / bricksPerRow;
+                (windowDimensions.x() - Constants.WALLS_WIDTH * 2
+                        - Constants.SPACING_X_FACTOR * bricksPerRow) / bricksPerRow;
         for (int row = 0; row < this.rows; row++) {
             for (int col = 0; col < this.bricksPerRow; col++) {
                 Brick brick = new Brick(
-                        new Vector2((width + Constants.SPACING_X_FACTOR) * col + Constants.SPACING_X_FACTOR / 2 + Constants.WALLS_WIDTH,
-                                (Constants.BRICK_HEIGHT + Constants.SPACING_Y_FACTOR) * row + Constants.WALLS_WIDTH),
+                        new Vector2((width + Constants.SPACING_X_FACTOR) * col +
+                                Constants.SPACING_X_FACTOR / 2 + Constants.WALLS_WIDTH,
+                                (Constants.BRICK_HEIGHT + Constants.SPACING_Y_FACTOR) * row +
+                                        Constants.WALLS_WIDTH),
                         new Vector2(width, Constants.BRICK_HEIGHT),
                         brickImage, strategyFactory.createStrategy(new Random().nextInt(10)));
                 this.gameObjects().addGameObject(brick, Layer.STATIC_OBJECTS);
