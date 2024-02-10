@@ -57,4 +57,19 @@ public class ExtraLive extends GameObject {
         // Add an extra life to the player
         brickerGameManager.addLive();
     }
+
+    /**
+     * Updates the state of ExtraLive.
+     *
+     * @param deltaTime The time elapsed since the last update.
+     */
+    @Override
+    public void update(float deltaTime) {
+        super.update(deltaTime);
+
+        // Check if ExtraLive has reached the bottom of the window and delete it if so
+        if (brickerGameManager.getWindowDimensions().y() < this.getCenter().y()) {
+            brickerGameManager.deleteObject(this);
+        }
+    }
 }

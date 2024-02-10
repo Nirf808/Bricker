@@ -11,7 +11,7 @@ import danogl.GameObject;
  */
 public class CameraStrategy implements CollisionStrategy {
 
-    private BrickerGameManager brickerGameManager; // Reference to the game manager
+    private final BrickerGameManager brickerGameManager; // Reference to the game manager
 
     /**
      * Constructs a new CameraStrategy.

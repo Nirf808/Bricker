@@ -8,7 +8,7 @@ import danogl.GameObject;
  */
 public class BasicCollisionStrategy implements CollisionStrategy {
 
-    private BrickerGameManager brickerGameManager;
+    private final BrickerGameManager brickerGameManager;
 
     /**
      * Constructs a new BasicCollisionStrategy.

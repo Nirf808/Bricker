@@ -17,7 +17,7 @@ public class CameraFollower extends GameObject {
      */
 //    public static int cameraFollowerLayer = Layer.BACKGROUND;
     private final int initCollisions; // Initial collision count of the main ball
-    private BrickerGameManager brickerGameManager; // Reference to the game manager
+    private final BrickerGameManager brickerGameManager; // Reference to the game manager
 
     /**
      * Constructs a new CameraFollower object.

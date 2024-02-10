@@ -14,8 +14,8 @@ import java.awt.event.KeyEvent;
 public class Paddle extends GameObject {
 
     private static final float MOVEMENT_SPEED = 300; // Speed of paddle movement
-    private UserInputListener inputListener; // Listener for user input
-    private float windowWidth; // Width of the game window
+    private final UserInputListener inputListener; // Listener for user input
+    private final float windowWidth; // Width of the game window
 
     /**
      * Constructs a new Paddle object.

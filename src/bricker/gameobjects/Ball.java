@@ -12,9 +12,9 @@ import danogl.util.Vector2;
  */
 public class Ball extends GameObject {
 
-    private BrickerGameManager brickerGameManager; // Reference to the game manager
+    private final BrickerGameManager brickerGameManager; // Reference to the game manager
     private int collisionCounter; // Number of collisions the ball has encountered
-    private Sound collisionSound; // Sound to play on collision
+    private final Sound collisionSound; // Sound to play on collision
 
     /**
      * Constructs a new Ball object.

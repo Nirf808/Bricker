@@ -7,7 +7,6 @@ import bricker.factories.StrategyFactory;
 import bricker.gameobjects.Ball;
 import bricker.gameobjects.Brick;
 import bricker.gameobjects.Lives;
-import bricker.gameobjects.Paddle;
 import danogl.GameManager;
 import danogl.GameObject;
 import danogl.collisions.Layer;
@@ -36,7 +35,7 @@ public class BrickerGameManager extends GameManager {
     private WindowController windowController; // Controller for the game window
     private UserInputListener inputListener; // Listener for user input
     private GameObjectFactory gameObjectFactory; // Factory for creating game objects
-    private StrategyFactory strategyFactory; // Factory for creating collision strategies
+    private final StrategyFactory strategyFactory; // Factory for creating collision strategies
 
     /**
      * Constructs a new BrickerGameManager with default number of bricks per row and rows.
@@ -85,7 +84,7 @@ public class BrickerGameManager extends GameManager {
 
         // Create game elements
         createBall();
-        createPaddle(imageReader, inputListener);
+        createPaddle(inputListener);
         createWalls();
         createBackground(imageReader);
         createBricks(imageReader);
@@ -253,15 +252,13 @@ public class BrickerGameManager extends GameManager {
         return new Vector2(ballXSpeed, ballYSpeed);
     }
 
-    private void createPaddle(ImageReader imageReader,
+    private void createPaddle(
                               UserInputListener inputListener) {
-        Renderable paddleImage =
-                imageReader.readImage("assets/paddle.png", true);
-        GameObject paddle =
-                new Paddle(Vector2.ZERO, new Vector2(Constants.PADDLE_WIDTH, Constants.PADDLE_LENGTH),
-                        paddleImage, inputListener, windowDimensions.x());
-        paddle.setCenter(new Vector2(windowDimensions.x() / 2,
-                windowDimensions.y() - Constants.PADDLE_HEIGHT));
+        GameObject paddle = this.gameObjectFactory.createPaddle(this,
+                "assets/paddle.png",  new Vector2(Constants.PADDLE_WIDTH, Constants.PADDLE_LENGTH),
+                inputListener, windowDimensions.x(),
+                new Vector2(windowDimensions.x() / 2, windowDimensions.y() - Constants.PADDLE_HEIGHT),
+                false);
         paddle.setTag(Constants.MAIN_PADDLE_TAG);
         this.gameObjects().addGameObject(paddle);
     }

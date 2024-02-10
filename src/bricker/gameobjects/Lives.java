@@ -52,13 +52,12 @@ public class Lives extends GameObject {
         updateLivesColor(); // Update text color based on the number of lives
 
         // Create text and image objects for each life
-        float initialTopLeftCornerY = topLeftCorner.y() - dimensions.y();
-        livesObjs[0] = new GameObject(new Vector2(topLeftCorner.x(), initialTopLeftCornerY),
+        livesObjs[0] = new GameObject(topLeftCorner,
                 new Vector2(dimensions), textRenderable);
         for (int i = 1; i < livesObjs.length; i++) {
             livesObjs[i] = new GameObject(
                     new Vector2(topLeftCorner.x() + (dimensions.x() + Constants.HEART_SPACING) * i,
-                            initialTopLeftCornerY),
+                            topLeftCorner.y()),
                     new Vector2(dimensions), livesImage);
         }
 

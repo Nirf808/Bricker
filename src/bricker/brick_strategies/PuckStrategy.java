@@ -15,7 +15,7 @@ import java.util.Random;
  */
 public class PuckStrategy implements CollisionStrategy {
 
-    private BrickerGameManager brickerGameManager; // Reference to the game manager
+    private final BrickerGameManager brickerGameManager; // Reference to the game manager
 
     /**
      * Constructs a new PuckStrategy.

@@ -15,7 +15,7 @@ import danogl.util.Vector2;
 public class ExtraPaddle extends Paddle {
 
     private int numCollisions; // Number of collisions the extra paddle has encountered
-    private BrickerGameManager brickerGameManager; // Reference to the game manager
+    private final BrickerGameManager brickerGameManager; // Reference to the game manager
 
     /**
      * Constructs an ExtraPaddle object.

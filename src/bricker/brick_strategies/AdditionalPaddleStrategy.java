@@ -14,7 +14,7 @@ import danogl.util.Vector2;
 public class AdditionalPaddleStrategy implements CollisionStrategy {
 
     private static boolean hasExtraPaddle = false; // Flag indicating if an extra paddle exists
-    private BrickerGameManager brickerGameManager; // Reference to the game manager
+    private final BrickerGameManager brickerGameManager; // Reference to the game manager
 
     /**
      * Constructs a new AdditionalPaddleStrategy.
