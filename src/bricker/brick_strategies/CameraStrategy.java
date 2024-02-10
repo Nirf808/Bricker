@@ -1,6 +1,6 @@
 package bricker.brick_strategies;
 
-import bricker.Constants;
+import bricker.main.Constants;
 import bricker.gameobjects.CameraFollower;
 import bricker.main.BrickerGameManager;
 import danogl.GameObject;

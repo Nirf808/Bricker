@@ -1,6 +1,6 @@
 package bricker.brick_strategies;
 
-import bricker.Constants;
+import bricker.main.Constants;
 import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 import danogl.collisions.Layer;

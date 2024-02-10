@@ -1,4 +1,4 @@
-package bricker;
+package bricker.main;
 
 import danogl.collisions.Layer;
 

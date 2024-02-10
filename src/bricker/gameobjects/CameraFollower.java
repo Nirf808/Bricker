@@ -1,6 +1,6 @@
 package bricker.gameobjects;
 
-import bricker.Constants;
+import bricker.main.Constants;
 import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 import danogl.gui.rendering.Camera;

@@ -1,6 +1,5 @@
 package bricker.main;
 
-import bricker.Constants;
 import bricker.brick_strategies.AdditionalPaddleStrategy;
 import bricker.factories.GameObjectFactory;
 import bricker.factories.StrategyFactory;
